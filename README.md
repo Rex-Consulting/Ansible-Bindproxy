@@ -18,29 +18,29 @@ If python-ldap is not available, you can default to using ldapmodify to update c
 
 The playbook is dependent on passing targets as extra variables. This can be done either through json or yml but the yaml format is as follows:
 
-servers:
-  - target1:
-      dn: olcDatabase={5}ldap,cn=config
-      suffix: ou=test,local
-      urls:
-        - 127.0.0.1
-        - 10.0.0.1
-  - target2: ...
+    servers:
+      - target1:
+          dn: olcDatabase={5}ldap,cn=config
+          suffix: ou=test,local
+          urls:
+            - 127.0.0.1
+            - 10.0.0.1
+      - target2: ...
 
 Note that the suffix is not required, it is simply there as a reference to differentiate each target. Each target corresponds to a server name. This configuration assumes all instances share the same server uri. If a server requires multiple changes, you can simply list them again:
 
-servers:
-  - target1:
-      dn: olcdatabase={5}ldap,cn=config
-      suffix: ou=test,local
-      urls:
-        - 127.0.0.1
-        - 10.0.0.1
-  - target1:
-      dn: olcdatabase={5}ldap,cn=config
-      suffix: ou=test2,local
-      urls:
-        - 10.0.0.2
-        - 10.0.0.3
+    servers:
+      - target1:
+          dn: olcdatabase={5}ldap,cn=config
+          suffix: ou=test,local
+          urls:
+            - 127.0.0.1
+            - 10.0.0.1
+      - target1:
+          dn: olcdatabase={5}ldap,cn=config
+          suffix: ou=test2,local
+          urls:
+            - 10.0.0.2
+            - 10.0.0.3
 
 Any urls listed will be concatenated into a single string which will be added to the dn entry specifics for each target.
