@@ -37,7 +37,7 @@ Note that the suffix is not required, it is simply there as a reference to diffe
             - 127.0.0.1
             - 10.0.0.1
       - target1:
-          dn: olcdatabase={5}ldap,cn=config
+          dn: olcdatabase={6}ldap,cn=config
           suffix: ou=test2,local
           urls:
             - 10.0.0.2
