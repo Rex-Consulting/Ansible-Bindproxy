@@ -1,0 +1,2 @@
+[servers]
+ldap3 ansible_host=ldap3 ansible_user=ansible-adm

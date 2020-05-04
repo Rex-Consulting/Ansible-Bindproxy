@@ -1,0 +1,4 @@
+---
+- import_tasks: update_targets.yml
+  tags:
+    - update:targets

@@ -1,0 +1,4 @@
+ldapmod_path: /opt/symas/bin/ldapmodify
+server_uri: ldapi://%2Fvar%2Fsymas%2Frun%2Fldapi
+bind_dn: "{{ bindproxy_dn }}"
+bind_pw: "{{ bindproxy_pw }}"

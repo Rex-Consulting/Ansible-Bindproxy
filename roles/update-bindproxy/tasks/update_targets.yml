@@ -1,0 +1,37 @@
+---
+#- name: Update bind proxy target IPs (ldapmodify)
+#  shell: |
+#    {{ ldapmod_path }} -x -H {{ server_uri }} -D {{ bind_dn }} -w {{ bind_pw }} <<EOF
+#    dn: {{ item.dn }}
+#    changetype: modify
+#    replace: olcDbURI
+#    olcDbURI: "{{ item.uris | join(" ") }}"
+#    EOF
+#  with_items: "{{ servers }}"
+#  register: result
+#  tags:
+#    - update:targets
+
+- name: Update bind proxy target IPs (ldap_attr)
+  ldap_attr:
+    server_uri: "{{ server_uri }}"
+    dn: "{{ item.dn }}"
+    name: olcDbURI
+    values: 
+      - >-
+        "{{ item.uris | join(" ") }}"
+    state: exact
+    bind_dn: "{{ bind_dn }}"
+    bind_pw: "{{ bind_pw }}" 
+  with_items: "{{ servers }}"
+  register: result
+  tags:
+    - update:targets
+
+- name: Print result
+  debug:
+    msg: "{{ result.stdout_lines }}"
+  tags:
+    - never
+    - debug
+    - debug:update:targets
