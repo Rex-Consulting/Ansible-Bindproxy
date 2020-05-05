@@ -23,7 +23,7 @@
     state: exact
     bind_dn: "{{ bind_dn }}"
     bind_pw: "{{ bind_pw }}" 
-  with_items: "{{ servers }}"
+  with_items: "{{ servers[ansible_hostname] }}"
   register: result
   tags:
     - update:targets
